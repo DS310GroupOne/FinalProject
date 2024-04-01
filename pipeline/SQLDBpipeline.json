@@ -1,0 +1,430 @@
+{
+	"name": "SQLDBpipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Dates data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dbo.Dates"
+					},
+					{
+						"name": "Destination",
+						"value": "sqldbcontainer//Dates.parquet"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "DateKey",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DateKey",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "FullDate",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "FullDate",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "isWeekDay",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "isWeekDay",
+									"type": "Boolean",
+									"physicalType": "BOOLEAN"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfWeek",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DayOfWeek",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfMonth",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DayOfMonth",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfQuarter",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DayOfQuarter",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DayOfYear",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DayOfYear",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DayName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DayName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekOfYear",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "WeekOfYear",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "WeekName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WeekName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MonthOfYear",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "MonthOfYear",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "MonthName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MonthName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CalendarQuarter",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CalendarQuarter",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "CalendarQuarterName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CalendarQuarterName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CalendarYear",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CalendarYear",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalMonth",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FiscalMonth",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalMonthName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FiscalMonthName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalQuarter",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FiscalQuarter",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalQuarterName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FiscalQuarterName",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalYear",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FiscalYear",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Country data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dbo.Country"
+					},
+					{
+						"name": "Destination",
+						"value": "sqldbcontainer//Country.parquet"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet2",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Covid19 Metric data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dbo.Covid19_Metrics"
+					},
+					{
+						"name": "Destination",
+						"value": "sqldbcontainer//Covid19_metrics.parquet"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable3",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet3",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-04-01T17:58:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
