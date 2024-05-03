@@ -1,0 +1,9 @@
+{
+	"name": "groupOneDataFactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7876825a-219c-4ea3-ac94-5023e567533d",
+		"tenantId": "d57d32cc-c121-488f-b07b-dfe705680c71"
+	}
+}

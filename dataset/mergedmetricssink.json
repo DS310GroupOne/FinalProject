@@ -1,0 +1,21 @@
+{
+	"name": "mergedmetricssink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ODSlake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "part-00000-61b68c11-5266-4e84-a92e-bd649eafca91-c000.snappy.parquet",
+				"fileSystem": "sinkods"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "separatedmetricsods",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ODSlake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cases.parquet",
+				"fileSystem": "sinkods"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
